@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Cuploader | Upload Response</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+</head>
+<body>
+    <div style="margin-left: 10px; margin-right: 10px;">
+        <center>
+            <div>
+                <font style="font-weight: 500;">Successfully uploaded to </font><span style="color: darkgray;"><%- uploadPath %></font>
+            </div>
+            <div style="margin-top: 10px; background-color: #0C151C; padding: 10px;">
+                <font>Uploaded File Info:</font>
+                <div style="margin-top: 10px;">
+                    <textarea style="font-family: Consolas; font-size: 14px; height: 500px; color: darkgray;" readonly><%- fileInfo %></textarea>
+                </div>
+            </div>
+            <div style="margin-top: 10px;">
+                <button id="GoBackButton">Go back</button>
+            </div>
+        </center>
+    </div>
+    <script>
+        const GoBackButton = document.getElementById("GoBackButton");
+
+        GoBackButton.addEventListener("click", function() {
+            window.location.href = "http://localhost:8000/";
+        });
+    </script>
+</body>
+</html>
