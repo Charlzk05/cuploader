@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Cuploader | List of page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+</head>
+<body style="font-family: Calibri;">
+  <div style="margin-left: 10px; margin-right: 10px;">
+    <div style="background-color: #0C151C; padding: 10px; border-radius: 5px;">
+      <h2 style="font-weight: 500; margin-left: 20px;">Ch4rlzki - Page list</h2>
+      <h3 style="font-weight: 500; margin-left: 20px;">Uploaded Pages</h3>
+        <% pages.forEach(function(page) { %>
+          <% if (page.includes("(main)")) { %>
+            
+          <% } else { %>
+            <div style="padding: 20px; margin-left: 20px; margin-right: 20px; height: 80%; border-radius: 5px; background-color: #0f0f0f;">
+              <li style="font-weight: 500;"><%- page %></li>
+              <button style="background-color: #161F27; margin-top: 20px;" onclick="window.location.href = 'https://cuploader.charlzk.repl.co/page?name=<%- page %>'">Go to page</button>
+            </div>
+            <hr style="margin-left: 5px; margin-right: 5px; margin-top: 20px; margin-bottom: 20px;">
+          <% } %>
+        <% }); %>
+      <center>
+        <button style="background-color: #161F27; width: 100%;" id="deletePageButton">Delete Page</button>
+        <button style="background-color: #161F27; width: 100%;" onclick="window.location.href = 'https://cuploader.charlzk.repl.co/'">Go back</button>
+      </center>
+    </div>
+  </div>
+  <script>
+    const deletePageButton = document.getElementById("deletePageButton");
+
+    deletePageButton.addEventListener("click", function() {
+    const pass = prompt("Server Password");
+
+    if (pass == null) {
+      console.log(null);
+     } else {
+      const pagename = prompt("Page name to delete");
+      if (pagename == null) {
+        console.log(null);
+      } else {
+        window.location.href = `https://cuploader.charlzk.repl.co/deletepage?pass=${pass}&pagename=${pagename}`;
+      }
+     }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<style>
+  
+</style>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Cuploader | Uploader Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" id="themeLink" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css">
+</head>
+<body style="font-family: Calibri;">
+    <div style="margin-left: 10px; margin-right: 10px;"> 
+        <center>
+            <div style="overflow: hidden;">
+                <div style="float: left;">
+                    <h2 style="font-weight: 500;">Uploader Page v2</h2>
+                </div>
+                <div  style="float: right;">
+                    <h2 style="font-weight: 500;">Ch4rlzki</h2>
+                </div>
+            </div>
+            <form action="https://cuploader.charlzk.repl.co/upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" id="fileBox" required>
+                <div style="margin-top: 10px;">
+                  <input type="submit" value="Upload File" id="submitButton" style="width: 100%;">
+                </div>
+            </form>
+        </center>
+        <div style="margin-top: 20px;">
+          <input type="checkbox" id="darkThemeCbox">
+          <font>Dark Mode</font>
+        </div>
+        <hr style="margin-top: 20px; margin-bottom: 10px;">
+          <div style="overflow: hidden;">
+            <h2 style="float: left;">Uploaded Files</h2>
+          </div>
+          <div style="padding: 10px; border-radius: 5px;">
+            <% items.forEach(function(item) { %>
+              <% if (item.includes(".jpg") || item.includes(".png") || item.includes(".jpeg")) { %>
+                <div style="margin-top: 10px; margin-bottom: 10px;">
+                  <li style="font-weight: 500;"><%- item %></li>
+                  <div style="margin-top: 10px;">
+                    <img src="<%- item %>" onclick="window.open('https://cuploader.charlzk.repl.co/preview?name=<%- item %>')" style="width: 20%; cursor: pointer;">
+                  </div>
+                  <button onclick="window.open('https://cuploader.charlzk.repl.co/preview?name=<%- item %>')" style="margin-top: 10px;">View Item</button>
+                  <button onclick="window.location.href = 'https://cuploader.charlzk.repl.co/download?filename=<%- item %>'" style="margin-top: 10px;">Download Item</button>
+                </div>
+                <% } else if (item.includes(".mp4")) { %>
+                <div style="margin-top: 10px; margin-bottom: 10px;">
+                  <li style="font-weight: 500;"><%- item %></li>
+                  <div style="margin-top: 10px;">
+                    <video controls>
+                      <source src="<%- item%>" type="video/mp4">
+                    </video>
+                  </div>
+                  <button onclick="window.open('https://cuploader.charlzk.repl.co/preview?name=<%- item %>')" style="margin-top: 10px;">View Item</button>
+                  <button onclick="window.location.href = 'https://cuploader.charlzk.repl.co/download?filename=<%- item %>'" style="margin-top: 10px;">Download Item</button>
+                </div>
+                <% } else { %>
+                <div style="margin-top: 10px; margin-bottom: 10px;">
+                  <li style="font-weight: 500;"><%- item %></li>
+                  <button onclick="window.location.href = 'https://cuploader.charlzk.repl.co/download?filename=<%- item %>'" style="margin-top: 10px;">Download Item</button>
+                </div>
+              <% } %>
+            <% }); %>
+            <center>
+              <button style="width: 100%; margin-top: 10px;" id="deleteFileButton">Delete File</button>
+            </center>
+            <hr style="margin-top: 20px; margin-bottom: 10px;">
+            <div style="overflow: hidden; margin-top: 20px;">
+              <h2 style="float: left;">Uploaded Pages</h2>
+            </div>
+            <div style="padding: 10px; border-raduis: 5px;">
+              <% pages.forEach(function(page) { %>
+                <div style="margin-top: 10px; margin-bottom: 10px;">
+                  <li style="font-weight: 500;"><%- page %></li>
+                  <button onclick="window.location.href = 'https://cuploader.charlzk.repl.co/page?name=<%- page %>'" style="margin-top: 10px;">Go to page</button>
+                </div>
+              <% }); %>
+            </div>
+            <center>
+              <button style="width: 100%;" id="deletePageButton">Delete Page</button>
+            </center>
+            <center>
+              <div style="margin-top: 20px; margin-bottom: 20px;">
+                <div>
+                  <a href="https://cuploader.charlzk.repl.co/">Go back to v1</a>
+                </div>
+                <font style="color: gray;">© 2022-23</font>
+              </div>
+            </center>
+        </div>
+    </div>
+    <script>
+      const fileBox = document.getElementById("fileBox");
+      const submitButton = document.getElementById("submitButton");
+      const themeLink = document.getElementById("themeLink");
+      const deleteFileButton = document.getElementById("deleteFileButton");
+      const darkThemeCbox = document.getElementById("darkThemeCbox");
+      const deletePageButton = document.getElementById("deletePageButton");
+
+      fileBox.addEventListener("input", function() {
+        console.log(fileBox.value);
+        if (/[#%{}<>*?!'"@$+`|=]/.test(fileBox.value)) {
+          submitButton.disabled = true;
+        } else {
+          submitButton.disabled = false;
+        }
+      });
+
+      darkThemeCbox.addEventListener("click", function() {
+        if (darkThemeCbox.checked == true) {
+          themeLink.setAttribute("href", "https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css");
+        } else {
+          themeLink.setAttribute("href", "https://cdn.jsdelivr.net/npm/water.css@2/out/light.css");
+        }
+      });
+      
+      deleteFileButton.addEventListener("click", function() {
+        const pass = prompt("Server Password");
+
+       if (pass == null) {
+        console.log(null);
+       } else {
+        const filename = prompt("File name to delete");
+        if (filename == null) {
+          console.log(null);
+        } else {
+          window.location.href = `https://cuploader.charlzk.repl.co/deletefile?pass=${pass}&filename=${filename}`;
+        }
+       }
+      });
+
+      deletePageButton.addEventListener("click", function() {
+      const pass = prompt("Server Password");
+
+      if (pass == null) {
+        console.log(null);
+       } else {
+        const pagename = prompt("Page name to delete");
+        if (pagename == null) {
+          console.log(null);
+        } else {
+          window.location.href = `https://cuploader.charlzk.repl.co/deletepage?pass=${pass}&pagename=${pagename}`;
+        }
+       }
+      });
+    </script>
+</body>
+</html>

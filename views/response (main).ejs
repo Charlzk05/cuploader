@@ -14,13 +14,13 @@
                 <font style="font-weight: 500;">Successfully uploaded to </font><span style="color: darkgray;"><%- uploadPath %></font>
             </div>
             <div style="margin-top: 10px; background-color: #0C151C; padding: 10px;">
-                <font>Uploaded File Info:</font>
+                <font>Server Response:</font>
                 <div style="margin-top: 10px;">
-                    <textarea style="font-family: Consolas; font-size: 14px; height: 500px; color: darkgray;" readonly><%- fileInfo %></textarea>
+                    <textarea style="font-family: Consolas; font-size: 14px; height: 500px; color: darkgray;" readonly><%- serverResponse %></textarea>
                 </div>
             </div>
             <div style="margin-top: 10px;">
-                <button id="GoBackButton">Go back</button>
+                <button id="GoBackButton" style="width: 260px;">Go back</button>
             </div>
         </center>
     </div>
@@ -28,7 +28,7 @@
         const GoBackButton = document.getElementById("GoBackButton");
 
         GoBackButton.addEventListener("click", function() {
-            window.location.href = "http://localhost:8000/";
+            window.location.href = "https://cuploader.charlzk.repl.co/";
         });
     </script>
 </body>

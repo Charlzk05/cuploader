@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Cuploader | List of files</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+</head>
+<body style="font-family: Calibri;">
+  <div style="margin-left: 10px; margin-right: 10px;">
+    <div style="background-color: #0C151C; padding: 10px; border-radius: 5px;">
+      <h2 style="font-weight: 500; margin-left: 20px;">Ch4rlzki - File list</h2>
+      <h3 style="font-weight: 500; margin-left: 20px;">Uploaded Files</h3>
+        <% items.forEach(function(item) { %>
+          <% if (item.includes(".jpg") || item.includes(".png") || item.includes(".jpeg")) { %>
+            <div style="padding: 20px; margin-left: 20px; margin-right: 20px; height: 80%; border-radius: 5px; background-color: #0f0f0f;">
+              <li style="font-weight: 500;"><%- item %></li>
+              <div style="margin-top: 20px;">
+                <img src="<%- item %>" style="width: 20%; cursor: pointer;" onclick="window.open('https://cuploader.charlzk.repl.co/preview?name=<%- item %>')">
+              </div>
+              <div style="margin-top: 20px;">
+                <button style="background-color: #161F27;" onclick="window.location.href = 'https://cuploader.charlzk.repl.co/download?filename=<%- item %>'">Download File</button>
+                <button style="background-color: #161F27;" onclick="window.open('https://cuploader.charlzk.repl.co/preview?name=<%- item %>')">View Image</button>
+              </div>
+            </div>
+            <hr style="margin-left: 5px; margin-right: 5px; margin-top: 20px; margin-bottom: 20px;">
+          <% } else if (item.includes(".mp3")) { %>
+            <div style="padding: 20px; margin-left: 20px; margin-right: 20px; height: 80%; border-radius: 5px; background-color: #0f0f0f;">
+              <li style="font-weight: 500;"><%- item %></li>
+              <div style="margin-top: 20px;">
+                <audio controls>
+                  <source src="<%- item %>" style="width: 10%; cursor: pointer;" type="audio/mp3">
+                </audio>
+              </div>
+              <div style="margin-top: 20px;">
+                <button style="background-color: #161F27;" onclick="window.location.href = 'https://cuploader.charlzk.repl.co/download?filename=<%- item %>'">Download File</button>
+              </div>
+            </div>
+            <hr style="margin-left: 5px; margin-right: 5px; margin-top: 20px; margin-bottom: 20px;">
+          <% } else if (item.includes(".mp4")) { %>
+            <div style="padding: 20px; margin-left: 20px; margin-right: 20px; height: 80%; border-radius: 5px; background-color: #0f0f0f;">
+              <li style="font-weight: 500;"><%- item %></li>
+              <div style="margin-top: 20px;">
+                <video controls>
+                  <source src="<%- item %>" style="width: 10%; cursor: pointer;" type="video/mp4">
+                </video>
+              </div>
+              <div style="margin-top: 20px;">
+                <button style="background-color: #161F27;" onclick="window.location.href = 'https://cuploader.charlzk.repl.co/download?filename=<%- item %>'">Download File</button>
+              </div>
+            </div>
+            <hr style="margin-left: 5px; margin-right: 5px; margin-top: 20px; margin-bottom: 20px;">
+          <% } else { %>
+            <div style="padding: 20px; margin-left: 20px; margin-right: 20px; height: 80%; border-radius: 5px; background-color: #0f0f0f;">
+              <li style="font-weight: 500;"><%- item %></li>
+              <div style="margin-top: 20px;">
+                <button style="background-color: #161F27;" onclick="window.location.href = 'https://cuploader.charlzk.repl.co/download?filename=<%- item %>'">Download File</button>
+              </div>
+            </div>
+            <hr style="margin-left: 5px; margin-right: 5px; margin-top: 20px; margin-bottom: 20px;">
+          <% } %>
+        <% }); %>
+      <center>
+        <button style="background-color: #161F27; width: 100%;" id="deleteFileButton">Delete File</button>
+        <button style="background-color: #161F27; width: 100%;" onclick="window.location.href='https://cuploader.charlzk.repl.co/'">Go back</button>
+      </center>
+    </div>
+  </div>
+  <script>
+    const deleteFileButton = document.getElementById("deleteFileButton");
+
+    deleteFileButton.addEventListener("click", function() {
+      const pass = prompt("Server Password");
+
+     if (pass == null) {
+      console.log(null);
+     } else {
+      const filename = prompt("File name to delete");
+      if (filename == null) {
+        console.log(null);
+      } else {
+        window.location.href = `https://cuploader.charlzk.repl.co/deletefile?pass=${pass}&filename=${filename}`;
+      }
+     }
+    });
+  </script>
+</body>
+</html>
